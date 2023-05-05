@@ -1,10 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 
-const App = () => (
-  <View>
-    <Text>App</Text>
-  </View>
-)
+import Navigation from './src/navigation'
+
+const App = () => <Navigation />
 
 export default App
