@@ -8,6 +8,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.background
   },
+  textInput: {
+    margin: 15,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 6,
+    fontSize: fontSize.MEDIUM,
+    textAlign: 'center',
+    backgroundColor: color.white,
+    borderColor: color.theme
+  },
   cardContainer: {
     backgroundColor: color.white,
     borderRadius: 10,

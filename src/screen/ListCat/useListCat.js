@@ -62,6 +62,7 @@ const useListCat = () => {
   const [page, setPage] = useState(pagination.DEFAULT_PAGE)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(true)
+  const [search, setSearch] = useState('')
 
   const state = {
     navigation,
@@ -72,7 +73,9 @@ const useListCat = () => {
     loading,
     setLoading,
     refreshing,
-    setRefreshing
+    setRefreshing,
+    search,
+    setSearch
   }
 
   useEffect(() => {

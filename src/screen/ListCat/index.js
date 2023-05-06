@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, TextInput } from 'react-native'
 
 import Header from '../../component/header'
 import Loading from '../../component/loading'
@@ -37,6 +37,12 @@ const ListCat = () => {
   return (
     <View style={styles.container}>
       <Header title="List Cat" />
+      <TextInput
+        style={styles.textInput}
+        value={state.search}
+        onChange={value => state.setSearch(value)}
+        placeholder="Search Cat"
+      />
       {state.refreshing ? <Loading /> : renderListCat(state)}
     </View>
   )
