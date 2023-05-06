@@ -19,7 +19,7 @@ const renderImage = props => (
 
 const renderLink = (link, navigation) => (
   <Icon
-    onPress={() => navigation.navigate(Routes.DetailCat, { link })}
+    onPress={() => navigation.navigate(Routes.DetailCat, { link: link })}
     name="link"
     size={styles.linkIcon.size}
     color={styles.linkIcon.color}

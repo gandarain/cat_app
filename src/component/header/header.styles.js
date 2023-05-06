@@ -1,6 +1,6 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native'
 
-import { fontFamily, fontSize } from '../../constant/font'
+import { fontFamily, fontSize, iconSize } from '../../constant/font'
 import color from '../../constant/color'
 
 const styles = StyleSheet.create({
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     width: '15%'
   },
   leftIcon: {
-    size: fontSize.BIG,
+    size: iconSize.BIG,
     color: color.white
   },
   bodyContainer: {

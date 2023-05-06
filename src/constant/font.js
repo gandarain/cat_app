@@ -4,6 +4,12 @@ const fontSize = {
   SMALL: 15
 }
 
+const iconSize = {
+  BIG: 25,
+  MEDIUM: 20,
+  SMALL: 18
+}
+
 const fontFamily = {
   BOLD: 'Roboto-Bold',
   ITALIC: 'Roboto-Italic',
@@ -11,4 +17,4 @@ const fontFamily = {
   SEMI_BOLD: 'Roboto-Medium'
 }
 
-export { fontFamily, fontSize }
+export { fontFamily, fontSize, iconSize }
