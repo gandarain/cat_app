@@ -1,7 +1,8 @@
 import axios from 'axios'
+import Config from 'react-native-config'
 
 const Service = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: Config.BASE_URL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json'
