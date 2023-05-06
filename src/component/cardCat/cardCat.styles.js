@@ -56,6 +56,19 @@ const styles = StyleSheet.create({
     color: color.font,
     fontSize: fontSize.MEDIUM,
     fontFamily: fontFamily.REGULAR
+  },
+  containerDetail: {
+    marginTop: 10
+  },
+  star: {
+    color: color.theme,
+    marginLeft: -10,
+    marginTop: 5
+  },
+  textStar: {
+    color: color.font,
+    fontSize: fontSize.SMALL,
+    fontFamily: fontFamily.BOLD
   }
 })
 

@@ -3,9 +3,10 @@ import { useNavigation } from '@react-navigation/native'
 import _ from 'lodash'
 
 import Service from '../../service'
+import pagination from '../../constant/pagination'
 
 const getListCat = async state => {
-  const limit = 10
+  const limit = pagination.LIMIT
 
   try {
     const response = await Service.get('breeds', {
@@ -17,7 +18,7 @@ const getListCat = async state => {
 
     const data = _.get(response, 'data', [])
 
-    state.page === 0
+    state.page === pagination.DEFAULT_PAGE
       ? state.setListCat(data)
       : state.setListCat(state.listCat.concat(data))
     state.setLoading(false)
@@ -43,10 +44,22 @@ const loadMore = state => () => {
   }
 }
 
+const onShowDetail = (state, index) => () => {
+  const updatedData = {
+    ...state.listCat[index],
+    showDetail: state.listCat[index].showDetail ? false : true
+  }
+
+  let newData = [...state.listCat]
+  newData[index] = updatedData
+
+  state.setListCat(newData)
+}
+
 const useListCat = () => {
   const { navigation } = useNavigation()
   const [listCat, setListCat] = useState([])
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(pagination.DEFAULT_PAGE)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(true)
 
@@ -72,7 +85,8 @@ const useListCat = () => {
   return {
     ...state,
     onRefresh: () => onRefresh(state),
-    loadMore: () => loadMore(state)
+    loadMore: () => loadMore(state),
+    onShowDetail: onShowDetail
   }
 }
 

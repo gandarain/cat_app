@@ -21,7 +21,9 @@ const renderListCat = state => (
     onRefresh={state.onRefresh(state)}
     refreshing={state.loading}
     data={state.listCat}
-    renderItem={({ item }) => <CardCat item={item} />}
+    renderItem={({ item, index }) => (
+      <CardCat item={item} onPress={state.onShowDetail(state, index)} />
+    )}
     keyExtractor={item => item.id}
     onEndReachedThreshold={0.4}
     onEndReached={state.loadMore(state)}

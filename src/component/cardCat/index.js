@@ -4,9 +4,9 @@ import Config from 'react-native-config'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
 import _ from 'lodash'
+import StarRating from 'react-native-star-rating-widget'
 
 import Routes from '../../navigation/Routes'
-
 import styles from './cardCat.styles'
 
 const renderImage = props => (
@@ -52,16 +52,34 @@ const renderDescription = props => (
   </View>
 )
 
+const renderDetail = (value, title) => (
+  <View style={styles.containerDetail}>
+    <Text style={styles.textStar}>{title}</Text>
+    <StarRating
+      rating={value}
+      onChange={() => {}}
+      color={styles.star.color}
+      style={styles.star}
+    />
+  </View>
+)
+
 const CardCat = props => {
   const navigation = useNavigation()
 
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity onPress={props.onPress} style={styles.cardContainer}>
       <View style={styles.cardContent}>
         {renderImage(props)}
         {renderTitle(props, navigation)}
         {renderSubtitle(props)}
         {renderDescription(props)}
+        {props.item.showDetail &&
+          renderDetail(props.item.adaptability, 'Adaptability')}
+        {props.item.showDetail &&
+          renderDetail(props.item.affection_level, 'Affection')}
+        {props.item.showDetail &&
+          renderDetail(props.item.child_friendly, 'Child Friendly')}
       </View>
     </TouchableOpacity>
   )
