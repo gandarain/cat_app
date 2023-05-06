@@ -6,8 +6,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native'
 
 import Routes from './Routes'
-import ListCat from '../screen/ListCat'
-import DetailCat from '../screen/DetailCat'
+import ListCat from '../screen/listCat'
+import DetailCat from '../screen/detailCat'
 
 const Stack = createStackNavigator()
 
