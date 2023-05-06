@@ -1,59 +1,41 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import Config from 'react-native-config'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { View, FlatList } from 'react-native'
 
-import Routes from '../../navigation/Routes'
 import Header from '../../component/header'
+import Loading from '../../component/loading'
 
 import useListCat from './useListCat'
+import CardCat from '../../component/cardCat'
 import styles from './listCat.styles'
 
-const navigateToDetail = navigation => () => {
-  navigation.navigate(Routes.DetailCat)
+const renderLoading = state => () => {
+  if (state.loading) {
+    return <Loading />
+  }
+
+  return null
 }
 
+const renderListCat = state => (
+  <FlatList
+    onRefresh={state.onRefresh(state)}
+    refreshing={state.loading}
+    data={state.listCat}
+    renderItem={({ item }) => <CardCat item={item} />}
+    keyExtractor={item => item.id}
+    onEndReachedThreshold={0.4}
+    onEndReached={state.loadMore(state)}
+    ListFooterComponent={renderLoading(state)}
+  />
+)
+
 const ListCat = () => {
-  const { navigation } = useListCat()
+  const state = useListCat()
 
   return (
     <View style={styles.container}>
       <Header title="List Cat" />
-      <TouchableOpacity style={styles.cardContainer}>
-        <View style={styles.cardContent}>
-          <Image
-            source={{ uri: 'https://cdn2.thecatapi.com/images/ozEvzdVM-.jpg' }}
-            style={styles.image}
-            resizeMode="contain"
-          />
-          <View style={styles.cardTitle}>
-            <Text style={styles.textTitle}>Detail Cat</Text>
-            <View style={styles.link}>
-              <Icon
-                name="link"
-                size={styles.linkIcon.size}
-                color={styles.linkIcon.color}
-              />
-              <Icon
-                name="link"
-                size={styles.linkIcon.size}
-                color={styles.linkIcon.color}
-              />
-              <Icon
-                name="link"
-                size={styles.linkIcon.size}
-                color={styles.linkIcon.color}
-              />
-            </View>
-          </View>
-          <View style={styles.cardTitle}>
-            <Text style={styles.textSubTitle}>{Config.BASE_URL}</Text>
-          </View>
-          <View style={styles.cardTitle}>
-            <Text style={styles.textDescription}>Detail Cat</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+      {state.refreshing ? <Loading /> : renderListCat(state)}
     </View>
   )
 }
